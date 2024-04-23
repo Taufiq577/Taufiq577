@@ -1,0 +1,18 @@
+MODEL_ID="code-bison"
+PROJECT_ID=PROJECT_ID
+
+curl \
+-X POST \
+-H "Authorization: Bearer $(gcloud auth print-access-token)" \
+-H "Content-Type: application/json" \
+https://us-central1-aiplatform.googleapis.com/v1/projects/${PROJECT_ID}/locations/us-central1/publishers/google/models/${MODEL_ID}:predict -d \
+$"{
+  'instances': [
+    { 'prefix': 'Write a function that checks if a year is a leap year.'
+    }
+  ],
+  'parameters': {
+    'temperature': 0.5,
+    'maxOutputTokens': 256
+  }
+}"
